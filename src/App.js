@@ -67,7 +67,7 @@ function App() {
       </div>
 
       {displayrows.map((row, i) => {
-        return (<Row key={i} columns={displayColumns[i]} />)
+        return (<Row key={i} columns={displayColumns[i]} rowGap={rowGap} columnGap={columnGap} />)
       })}
 
     </div>
