@@ -12,34 +12,25 @@ function App() {
 
   const [displayrows, setDisplayRows] = React.useState([]);
   const [displayColumns, setDisplayColumns] = React.useState([]);
-  // const [splitColumns, setSplitColumns] = React.useState([]);
 
-
-
-  // React.useEffect(() => {
-  //   console.log('Display rows changed');
-  //   console.log(displayrows)
-  //   console.log(columns);
-  //   console.log(displayColumns);
-  //   // const display = displayColumns.split(',');
-  // }, [rows, displayrows, columns, displayColumns]);
-
+  React.useEffect(() => {
+    setDisplayColumns(columns.split(',').map(Number));
+  }, [columns]);
 
   function handleRowsChange(input) {
     setRows(input);
     setDisplayRows(Array(+input).fill(1));
-  };
+  }
   function handleColumnsChange(input) {
-    setDisplayColumns(columns.split(',').map(Number));
     setColumns(input);
-  };
+  }
   function handleRowGapChange(i) {
     setRowGap(+i);
-  };
+  }
 
   function handleColumnGapChange(i) {
     setcolumnGap(+i);
-  };
+  }
 
   return (
     <div className="main-container">
@@ -67,9 +58,15 @@ function App() {
       </div>
 
       {displayrows.map((row, i) => {
-        return (<Row key={i} columns={displayColumns[i]} rowGap={rowGap} columnGap={columnGap} />)
+        return (
+          <Row
+            key={i}
+            columns={displayColumns[i]}
+            rowGap={rowGap}
+            columnGap={columnGap}
+          />
+        );
       })}
-
     </div>
   );
 }
